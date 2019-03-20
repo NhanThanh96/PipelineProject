@@ -1,0 +1,119 @@
+mixin nav()
+	ul.navbar__list
+		each val in menu
+			li.navbar__item
+				a.navbar__link(
+					href=val.url
+					class= val.submenu ? "dropdown" : ""
+					)= val.name
+				if val.submenu
+					ul.navbar__list(
+						class= val.submenu ? "dropdown-menu" : ""
+					)
+						each sub in val.submenu
+							li.navbar__item
+								a.navbar__link(href= sub.url)= sub.name
+
+-
+	var menu = [
+								{
+									name : "Overview",
+									url	: "#",
+								},
+								{
+									name : "Pages",
+									url	: "#",
+									submenu : [
+															{
+																name : "App Pages",
+																url : "#",
+															},
+															{
+																name : "Utility Pages",
+																url : "#",
+															},
+															{
+																name : "Layouts",
+																url : "#",
+															},
+														]
+								},
+								{
+									name : "Components",
+									url	: "#",
+									submenu : [
+															{
+																name : "Bootstrap",
+																url : "#",
+															},
+															{
+																name : "Pipeline",
+																url : "#",
+															},
+														]
+								},
+								{
+									name : "Documentation",
+									url	: "#",
+								},
+								{
+									name : "Changelog",
+									url	: "#",
+								}
+							]
+	
+nav.sidebar
+	.navbar
+		a.logo
+			img(src="./images/logo.svg" alt="pipeline")
+		div.navbar-toggle
+			button.navbar-toggle__button
+				span.navbar-toggle__icon
+			.profile
+				a.profile__link(href="#" alt="avatar")
+					img.profile__img(src="./images/avatar-male-4.jpg", alt="avatar")
+				ul.dropdown__list
+					li.dropdown__item
+						a.dropdown__link Profile
+					li.dropdown__list
+						a.dropdown__link Account Settings
+					li.dropdown__list
+						a.dropdown__link Log out
+		.navbar-collapse
+			+nav()
+	hr
+	.quick-link
+		h3.qick-link__title Quick links
+		ul.quick-link__list
+			li.quick-link__item
+				a.quick-link__link(href="#") Team Overview
+			li.quick-link__item
+				a.quick-link__link(href="#") Project
+			li.quick-link__item
+				a.quick-link__link(href="#") Single Task
+			li.quick-link__item
+				a.quick-link__link(href="#") Kanban Board
+	hr
+	.search
+		form.search__form(action="#")
+			button.search__button
+				i(class="fas fa-search")
+			input.search__input(type="text" placeholder="Search")
+		button.btn__add-new Add New
+		ul.dropdown__list
+			li.dropdown__item
+				a.dropdown__link Team
+			li.dropdown__item
+				a.dropdown__link Project
+			li.dropdown__item
+				a.dropdown__link Task
+		.profile
+			a.profile__link(href="#" alt="avatar")
+				img.profile__img(src="./images/avatar-male-4.jpg", alt="avatar")
+			ul.dropdown__list
+				li.dropdown__item
+					a.dropdown__link Profile
+				li.dropdown__item
+					a.dropdown__link Account Settings
+				li.dropdown__item
+					a.dropdown__link Log out
