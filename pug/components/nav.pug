@@ -4,11 +4,11 @@ mixin nav()
 			li.navbar__item
 				a.navbar__link(
 					href=val.url
-					class= val.submenu ? "dropdown" : ""
+					class= val.submenu ? "dropdown js-dropdown" : ""
 					)= val.name
 				if val.submenu
 					ul.navbar__list(
-						class= val.submenu ? "dropdown-menu" : ""
+						class= val.submenu ? "dropdown-menu js-dropdown-menu" : ""
 					)
 						each sub in val.submenu
 							li.navbar__item
@@ -64,26 +64,27 @@ mixin nav()
 	
 nav.sidebar
 	.navbar
-		a.logo
-			img(src="./images/logo.svg" alt="pipeline")
-		div.navbar-toggle
-			button.navbar-toggle__button
-				span.navbar-toggle__icon
-			.profile
-				a.profile__link(href="#" alt="avatar")
-					img.profile__img(src="./images/avatar-male-4.jpg", alt="avatar")
-				ul.dropdown__list
-					li.dropdown__item
-						a.dropdown__link Profile
-					li.dropdown__list
-						a.dropdown__link Account Settings
-					li.dropdown__list
-						a.dropdown__link Log out
-		.navbar-collapse
+		.d-flex.justify-content-space-between
+			a.logo
+				img(src="./images/logo.svg" alt="pipeline")
+			div.navbar__toggle
+				button.navbar__toggle-button.js-navbar__toogle-button
+					span
+						i.fas.fa-bars
+				.profile
+					a.profile__link.js-profile__link(href="#" alt="avatar")
+						img.profile__img(src="./images/avatar-male-4.jpg", alt="avatar")
+					ul.dropdown__list.profile__dropdown
+						li.dropdown__item
+							a.dropdown__link Profile
+						li.dropdown__item
+							a.dropdown__link Account Settings
+						li.dropdown__item
+							a.dropdown__link Log out
+		.navbar__collapse
 			+nav()
-	hr
 	.quick-link
-		h3.qick-link__title Quick links
+		h3.quick-link__title Quick links
 		ul.quick-link__list
 			li.quick-link__item
 				a.quick-link__link(href="#") Team Overview
@@ -93,24 +94,24 @@ nav.sidebar
 				a.quick-link__link(href="#") Single Task
 			li.quick-link__item
 				a.quick-link__link(href="#") Kanban Board
-	hr
-	.search
+	.sidebar__action
 		form.search__form(action="#")
 			button.search__button
 				i(class="fas fa-search")
 			input.search__input(type="text" placeholder="Search")
-		button.btn__add-new Add New
-		ul.dropdown__list
-			li.dropdown__item
-				a.dropdown__link Team
-			li.dropdown__item
-				a.dropdown__link Project
-			li.dropdown__item
-				a.dropdown__link Task
-		.profile
-			a.profile__link(href="#" alt="avatar")
-				img.profile__img(src="./images/avatar-male-4.jpg", alt="avatar")
+		.add-new
+			button.btn--add-new.js-btn--add-new Add New
 			ul.dropdown__list
+				li.dropdown__item
+					a.dropdown__link Team
+				li.dropdown__item
+					a.dropdown__link Project
+				li.dropdown__item
+					a.dropdown__link Task
+		.profile
+			a.profile__link.js-profile__link(href="#" alt="avatar")
+				img.profile__img(src="./images/avatar-male-4.jpg", alt="avatar")
+			ul.dropdown__list.profile__dropdown-menu
 				li.dropdown__item
 					a.dropdown__link Profile
 				li.dropdown__item
